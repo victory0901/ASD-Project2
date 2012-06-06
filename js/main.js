@@ -1,6 +1,6 @@
-//ASD Project 1
+//ASD Project 2
 //James Floyd II 
-//June 1, 2012
+//June 2, 2012
 
 
 var parseAddGiftForm = function(data){

@@ -1,6 +1,6 @@
-//ASD Project 1
+//ASD Project 2
 //James Floyd II 
-//June 1, 2012
+//June 7, 2012
 
 var json = {
 	"gift1": {
