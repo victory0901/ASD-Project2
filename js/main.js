@@ -8,34 +8,31 @@ var parseAddGiftForm = function(data){
 	console.log(data);
 };
 
-$('#additem').on('pageinit', function(){
+$('#additemform').on('pageinit', function(){
 
-	var aiform = $('#additemform'),
-		aierrorslink = $('#aierrorslink')
-	;
 
-	aiform.validate({
-		invalidHandler: function(form, validator){
-			aierrorslink.click();
-			var html = '';
-			for(var key in validator.submitted){
-				var label = $('label[for^="'+ key +'"]').not('[generated]');
-				var legend = label.closest('fieldset').find('.ui-controlgroup-label');
-				var fieldName = legend.length ? legend.text() : label.text();
-				html += '<li>'+ fieldName +'</li>';
-			};
-			$("#additemerrors ul").html(html);
-		},
-		submitHandler: function(){
-			var data = aiform.serializeArray();
-			parseAddGiftForm(data);
-		}
-	});
+    var aiform = $('#additemform'),
+        aierrorslink = $('#aierrorslink')
+    ;
 
-	submitHandler: function() {
-		var data = $(".additemform").serializeArray();
-		localStorage.setItem("formdata", data);
-	}
+    aiform.validate({
+        invalidHandler: function(form, validator){
+            aierrorslink.click();
+            var html = '';
+            for(var key in validator.submitted){
+                var label = $('label[for^="'+ key +'"]').not('[generated]');
+                var legend = label.closest('fieldset').find('.ui-controlgroup-label');
+                var fieldName = legend.length ? legend.text() : label.text();
+                html += '<li>'+ fieldName +'</li>';
+            };
+            $("#additemerrors ul").html(html);
+        },
+        submitHandler: function(){
+            var data = aiform.serializeArray();
+            parseAddGiftForm(data);
+            storeData(key);
+        }
+    });
 
 
 /*
@@ -335,4 +332,4 @@ window.bind("DOMContentLoaded", function(){
 	save.bind("click", validate);
 });
 
-*/
+
