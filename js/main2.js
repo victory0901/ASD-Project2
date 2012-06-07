@@ -27,7 +27,47 @@ $(document).ready(function () {
         });
         $("#jsonlist").listview("refresh");
     });
- 
+
+
+    // XML ***************************************************************************************    
+
+
+     $('#xmlButt').bind('click', function(){
+         console.log("XMl Button Pressed");
+		 $('#xmllist').empty();	
+         $.ajax({
+             url: 'xhr/data.xml',
+             type: 'GET',
+             dataType: 'xml',
+             success: function(xmlData){
+                 $(xmlData).find("present").each(function(){
+					var group = $(this).find('group').text();
+                     var fname = $(this).find('fname').text();
+                     var lname = $(this).find('lname').text();
+                     var gift = $(this).find('gift').text();
+                     var quantity = $(this).find('quantity').text();
+                     var purchase = $(this).find('purchase').text();
+                     var buydate = $(this).find('buydate').text();
+                     var notes = $(this).find('notes').text();
+                     $('#xmllist').append($(' ' +
+                         '<ul>' +
+                         '<li>Group: ' + group + '</li>' +
+                         '<li>First Name: ' + fname + '</li>' +
+                         '<li>Last Name: ' + lname + '</li>' +
+                         '<li>Gift: ' + gift + '</li> ' +
+                         '<li>Quantity: ' + quantity + '</li> ' +
+                         '<li>Where to Buy: ' + purchase + '</li> ' +
+                         '<li>Buy Gift By: ' + buydate + '</li> ' +
+                         '<li>Notes: ' + notes + '</ul><br/>'));
+
+
+                 });
+         $('xmllist').listview('refresh');
+             }
+
+         });
+
+     });
 });
 
 
