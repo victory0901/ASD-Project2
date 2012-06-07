@@ -29,7 +29,7 @@ $(document).ready(function () {
     });
 
 
-    // XML ***************************************************************************************    
+// XML ***************************************************************************************    
 
 
      $('#xmlButt').bind('click', function(){
@@ -68,6 +68,32 @@ $(document).ready(function () {
          });
 
      });
+
+// CSV ***************************************************************************************     
+ 
+ 
+ 	$('#csvButt').bind("click", function (){
+         console.log("CSV Button Pressed");
+         $('#csvlist').empty();
+         $.ajax({
+         url: 'xhr/data.csv',
+         type: 'GET',
+         dataType: 'text',
+         success: function(csvData){
+             var items = csvData.split("\n");
+             for(var n=1; n < items.length; n++){
+                 var row = items[n];
+                 var columns = row.split(",");
+
+                 $('#csvlist').append($(' ' +
+                     '<ul>' +
+                     '<li> ' + row + '</li> ' +
+                     '</ul><br/>'));
+                }
+             }
+         });
+     });     
+     
 });
 
 
